@@ -1,3 +1,5 @@
+using Account_Api.UnityOfWork;
+using AccountManager.Data.Lib.ExtensionMethods;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,7 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Account_Api
+namespace AccountManager_Api
 {
     public class Startup
     {
@@ -23,7 +25,6 @@ namespace Account_Api
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
 
@@ -32,9 +33,11 @@ namespace Account_Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Account_Api", Version = "v1" });
             });
+
+            services.AddScoped<Uow>();
+            services.AddMongoClient(connectionString: Configuration["MongoConnectionString"], baseName: Configuration["MongoDatabaseName"]);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

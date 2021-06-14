@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Account.Data\Account.Data.csproj" />
+    <ProjectReference Include="..\AccountManager.Data\AccountManager.Data.csproj" />
   </ItemGroup>
 
 </Project>

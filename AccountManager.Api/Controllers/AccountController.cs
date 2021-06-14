@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Account_Api.Controllers
+namespace AccountManager_Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
